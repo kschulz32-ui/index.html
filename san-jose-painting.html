@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>San Jose Painting | Residential Painting in Metro Atlanta, GA</title>
+  <meta name="description" content="San Jose Painting offers professional residential interior and exterior painting services across Metro Atlanta. Licensed, insured, and dedicated to quality. Call 404-867-9100 for a free estimate." />
+  <meta name="keywords" content="residential painting Atlanta, interior painting Metro Atlanta, exterior painting Atlanta, house painters Atlanta, San Jose Painting" />
+  <meta property="og:title" content="San Jose Painting | Metro Atlanta's Trusted Residential Painters" />
+  <meta property="og:description" content="Professional interior and exterior painting for Metro Atlanta homeowners. Free estimates. Licensed & insured." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2744;
+      --navy-dark: #111b33;
+      --navy-mid: #243358;
+      --gold: #c8973a;
+      --gold-light: #deb96a;
+      --cream: #faf8f4;
+      --warm-white: #fff9f2;
+      --gray: #6b7280;
+      --gray-light: #f3f0eb;
+      --text: #1e2027;
+      --radius: 4px;
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy-dark);
+      border-bottom: 3px solid var(--gold);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--navy-dark) !important;
+      font-weight: 700 !important;
+      font-size: 0.9rem !important;
+      padding: 0.5rem 1.1rem;
+      border-radius: var(--radius);
+      transition: background var(--transition) !important;
+    }
+
+    .nav-phone:hover { background: var(--gold-light) !important; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--navy);
+      z-index: 0;
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,151,58,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(26,39,68,0.6) 0%, transparent 70%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 0%, rgba(200,151,58,0.06) 100%);
+    }
+
+    /* Decorative brushstroke shapes */
+    .hero-stroke {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .hero-stroke-1 {
+      width: 600px;
+      height: 600px;
+      border-radius: 60% 40% 50% 50% / 40% 60% 40% 60%;
+      background: rgba(200,151,58,0.07);
+      top: -100px;
+      right: -100px;
+      transform: rotate(20deg);
+    }
+
+    .hero-stroke-2 {
+      width: 300px;
+      height: 300px;
+      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+      background: rgba(200,151,58,0.05);
+      bottom: 50px;
+      left: 55%;
+      transform: rotate(-10deg);
+    }
+
+    /* Vertical line accents */
+    .hero-line {
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(200,151,58,0.3), transparent);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 5% 80px 8%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(200,151,58,0.15);
+      border: 1px solid rgba(200,151,58,0.3);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '●';
+      font-size: 0.5rem;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.35);
+      transition: border-color var(--transition), background var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 8% 80px 5%;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(200,151,58,0.2);
+      border-radius: 8px;
+      padding: 2.5rem;
+      max-width: 380px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    .hero-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(200,151,58,0.2);
+    }
+
+    .trust-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .trust-item .icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(200,151,58,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+    }
+
+    .hero-rating {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(200,151,58,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.05em; }
+
+    .rating-text {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+    }
+
+    .rating-text strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 90px 8%; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    .section-head { margin-bottom: 3.5rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 6px;
+      padding: 2.2rem 2rem;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold);
+      transition: height 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(26,39,68,0.1);
+      border-color: rgba(200,151,58,0.25);
+    }
+
+    .service-card:hover::before { height: 100%; }
+
+    .svc-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .svc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .svc-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── WHY CHOOSE US ── */
+    #why {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #why::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 80% 20%, rgba(200,151,58,0.08) 0%, transparent 60%);
+    }
+
+    #why .section-title { color: #fff; }
+    #why .section-sub { color: rgba(255,255,255,0.6); }
+    #why .section-label { color: var(--gold-light); }
+
+    .why-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,151,58,0.15);
+      border-radius: 6px;
+      padding: 1.75rem 1.5rem;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .why-card:hover {
+      background: rgba(200,151,58,0.08);
+      border-color: rgba(200,151,58,0.35);
+    }
+
+    .why-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .why-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .why-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .why-cta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .big-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .big-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .big-stat .label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    /* ── SERVICE AREA ── */
+    #area { background: var(--gray-light); }
+
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .area-item {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 4px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--navy);
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .area-item:hover {
+      border-color: var(--gold);
+      background: #fffdf8;
+    }
+
+    .area-item::before {
+      content: '📍';
+      font-size: 0.75rem;
+    }
+
+    .area-note {
+      margin-top: 1.75rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .area-note strong { color: var(--navy); font-weight: 600; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info { padding-top: 0.5rem; }
+
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .contact-val a {
+      color: var(--navy);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .contact-val a:hover { color: var(--gold); }
+
+    /* FORM */
+    .form-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 30px rgba(26,39,68,0.07);
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-sub {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--warm-white);
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius);
+      padding: 0.7rem 0.9rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      width: 100%;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26,39,68,0.08);
+    }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit .btn-primary {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    .form-disclaimer {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark);
+      border-top: 3px solid var(--gold);
+      padding: 2.5rem 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .footer-logo span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .footer-phone {
+      color: var(--gold-light);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-phone:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── FLOATING CALL BTN (mobile) ── */
+    .float-call {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(200,151,58,0.45);
+      align-items: center;
+      gap: 0.5rem;
+      animation: pulse 2.5s ease infinite;
+    }
+
+    /* ── SUCCESS MSG ── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .form-success .check {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 24px rgba(200,151,58,0.45); }
+      50%       { box-shadow: 0 6px 36px rgba(200,151,58,0.7); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 70px 6% 30px; }
+      .hero-visual { padding: 20px 6% 60px; }
+      .hero-card { max-width: 100%; }
+      .hero-line { display: none; }
+      .why-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      section { padding: 70px 6%; }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--navy-dark);
+        padding: 1.5rem 6%;
+        gap: 1.2rem;
+        border-top: 1px solid rgba(200,151,58,0.2);
+      }
+      .nav-phone { display: none !important; }
+      .nav-toggle { display: flex; }
+      .why-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .float-call { display: flex; }
+      .stat-row { gap: 1.5rem; }
+      .big-stat .num { font-size: 3.5rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    San Jose Painting
+    <span>Metro Atlanta, GA</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#area">Service Area</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:4048679100" class="nav-phone">📞 404-867-9100</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-stroke hero-stroke-1"></div>
+    <div class="hero-stroke hero-stroke-2"></div>
+  </div>
+  <div class="hero-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Metro Atlanta's Trusted Painters</div>
+    <h1 class="hero-title">
+      Your Home Deserves<br>
+      <em>Exceptional</em> Color
+    </h1>
+    <p class="hero-sub">
+      San Jose Painting delivers precision interior and exterior painting for Metro Atlanta homeowners. Clean work, honest pricing, and results you'll be proud to show off.
+    </p>
+    <div class="hero-btns">
+      <a href="tel:4048679100" class="btn-primary">📞 Call 404-867-9100</a>
+      <a href="#contact" class="btn-outline">Get a Free Quote →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-title">Why Homeowners Choose Us</div>
+      <div class="trust-row">
+        <div class="trust-item">
+          <div class="icon">✓</div>
+          Licensed & Fully Insured
+        </div>
+        <div class="trust-item">
+          <div class="icon">✓</div>
+          Free, No-Pressure Estimates
+        </div>
+        <div class="trust-item">
+          <div class="icon">✓</div>
+          100% Satisfaction Guaranteed
+        </div>
+        <div class="trust-item">
+          <div class="icon">✓</div>
+          Locally Owned & Operated
+        </div>
+        <div class="trust-item">
+          <div class="icon">✓</div>
+          Transparent, Upfront Pricing
+        </div>
+      </div>
+      <div class="hero-rating">
+        <div class="stars">★★★★★</div>
+        <div class="rating-text"><strong>5-Star Service</strong><br>from Metro Atlanta homeowners</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head reveal">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Residential Painting Services</h2>
+    <p class="section-sub">From a single room refresh to a full exterior transformation, we handle every project with the same level of care and craftsmanship.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="svc-icon">🏠</span>
+      <div class="svc-title">Interior Painting</div>
+      <p class="svc-desc">We prep thoroughly, protect your belongings, and deliver clean, smooth finishes on every wall, ceiling, and trim. Minimal disruption, maximum results.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="svc-icon">🏡</span>
+      <div class="svc-title">Exterior Painting</div>
+      <p class="svc-desc">From power washing and caulking to the final coat, we protect your home's exterior against Georgia's heat and humidity while boosting your curb appeal.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="svc-icon">💦</span>
+      <div class="svc-title">Pressure Washing</div>
+      <p class="svc-desc">Before a single drop of paint goes on, the surface has to be clean. We pressure wash siding, driveways, decks, and fences to remove dirt, mildew, and buildup — leaving everything ready for a flawless finish.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="svc-icon">🪵</span>
+      <div class="svc-title">Cabinet Painting</div>
+      <p class="svc-desc">Give your kitchen or bathroom a dramatic refresh without a full renovation. Our cabinet refinishing process produces a factory-smooth finish that holds up over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="why-layout">
+    <div>
+      <div class="section-label reveal">Our Promise</div>
+      <h2 class="section-title reveal">The San Jose<br>Difference</h2>
+      <p class="section-sub reveal" style="margin-bottom: 2.5rem;">We know you have options. Here's why Atlanta homeowners keep calling us back — and referring us to their neighbors.</p>
+      <div class="stat-row reveal">
+        <div class="big-stat">
+          <span class="num">10+</span>
+          <span class="label">Years Serving Atlanta</span>
+        </div>
+        <div class="big-stat">
+          <span class="num">500+</span>
+          <span class="label">Homes Transformed</span>
+        </div>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-icon">🔒</span>
+        <div class="why-title">Licensed & Insured</div>
+        <p class="why-desc">You're covered. We carry full liability insurance and workers' comp on every job.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">💰</span>
+        <div class="why-title">Free Estimates</div>
+        <p class="why-desc">No commitment needed. We'll come out, assess the project, and give you a clear, written quote.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🤝</span>
+        <div class="why-title">Satisfaction Guaranteed</div>
+        <p class="why-desc">We're not done until you're happy. If something's not right, we'll fix it. Period.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">📍</span>
+        <div class="why-title">Locally Owned</div>
+        <p class="why-desc">We live and work in Metro Atlanta. Our reputation is built one home at a time, right here.</p>
+      </div>
+      <div class="why-card reveal" style="grid-column: 1 / -1;">
+        <span class="why-icon">⏱️</span>
+        <div class="why-title">On Time, On Budget</div>
+        <p class="why-desc">We stick to the schedule and the quote. No surprise costs, no disappearing acts, no drama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section id="area">
+  <div class="section-head reveal">
+    <div class="section-label">Where We Work</div>
+    <h2 class="section-title">Serving Metro Atlanta</h2>
+    <p class="section-sub">We work across the Atlanta metro area. If you don't see your city listed, give us a call — chances are we can help.</p>
+  </div>
+  <div class="area-grid reveal">
+    <div class="area-item">Fulton County</div>
+    <div class="area-item">DeKalb County</div>
+    <div class="area-item">Gwinnett County</div>
+    <div class="area-item">Cobb County</div>
+    <div class="area-item">Cherokee County</div>
+    <div class="area-item">Forsyth County</div>
+    <div class="area-item">Clayton County</div>
+    <div class="area-item">Henry County</div>
+    <div class="area-item">Alpharetta</div>
+    <div class="area-item">Marietta</div>
+    <div class="area-item">Smyrna</div>
+    <div class="area-item">Decatur</div>
+    <div class="area-item">Roswell</div>
+    <div class="area-item">Sandy Springs</div>
+    <div class="area-item">Dunwoody</div>
+    <div class="area-item">Peachtree City</div>
+    <div class="area-item">Kennesaw</div>
+    <div class="area-item">Woodstock</div>
+    <div class="area-item">Buford</div>
+    <div class="area-item">Lawrenceville</div>
+    <div class="area-item">Norcross</div>
+    <div class="area-item">Tucker</div>
+    <div class="area-item">Stockbridge</div>
+    <div class="area-item">McDonough</div>
+  </div>
+  <p class="area-note reveal">
+    <strong>Not on the list?</strong> Call us at <a href="tel:4048679100" style="color: var(--navy); font-weight:700;">404-867-9100</a> — we serve most communities within 45 miles of Atlanta.
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="section-label reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Ready for a Free Estimate?</h2>
+      <p class="section-sub reveal">Fill out the form and we'll get back to you within one business day. Or call us now for a quicker response.</p>
+      <div class="contact-block">
+        <div class="contact-item reveal">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-val"><a href="tel:4048679100">404-867-9100</a></div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-val">Metro Atlanta, Georgia</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Hours</div>
+            <div class="contact-val">Mon–Sat: 7am – 6pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <div id="formContent">
+        <div class="form-title">Request a Free Quote</div>
+        <p class="form-sub">No obligation. We'll review your project and reach out with a clear estimate.</p>
+        <div class="form-grid" id="quoteForm">
+          <div class="form-group">
+            <label for="fname">Full Name</label>
+            <input type="text" id="fname" placeholder="Jane Smith" />
+          </div>
+          <div class="form-group">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" placeholder="404-555-0100" />
+          </div>
+          <div class="form-group">
+            <label for="femail">Email Address</label>
+            <input type="email" id="femail" placeholder="jane@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="fservice">Service Needed</label>
+            <select id="fservice">
+              <option value="">Select a service...</option>
+              <option>Interior Painting</option>
+              <option>Exterior Painting</option>
+              <option>Cabinet Painting</option>
+              <option>Pressure Washing</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="fmessage">Tell Us About Your Project</label>
+            <textarea id="fmessage" placeholder="e.g., 3-bedroom home, need interior repainted, flexible on timing..."></textarea>
+          </div>
+          <div class="form-group form-submit">
+            <button class="btn-primary" onclick="submitForm()">Submit Request →</button>
+            <p class="form-disclaimer">We'll never share your information. Expect a response within 1 business day.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✅</div>
+        <h3>We got your request!</h3>
+        <p>Thanks for reaching out to San Jose Painting. We'll be in touch within one business day to schedule your free estimate.</p>
+        <br>
+        <a href="tel:4048679100" class="btn-primary" style="display:inline-flex; margin: 0 auto;">Or Call Us Now: 404-867-9100</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    San Jose Painting
+    <span>Metro Atlanta, Georgia</span>
+  </div>
+  <a href="tel:4048679100" class="footer-phone">📞 404-867-9100</a>
+  <div class="footer-copy">© 2025 San Jose Painting. All rights reserved.</div>
+</footer>
+
+<!-- FLOATING CALL BTN -->
+<a href="tel:4048679100" class="float-call" id="floatCall">
+  📞 Call Now
+</a>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close nav when link clicked
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger siblings
+        const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+        let delay = 0;
+        siblings.forEach((s, idx) => {
+          if (s === entry.target) delay = idx * 80;
+        });
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    if (!name || !phone) {
+      alert('Please enter at least your name and phone number so we can reach you.');
+      return;
+    }
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  // Hide floating call button on desktop
+  function checkFloat() {
+    const btn = document.getElementById('floatCall');
+    btn.style.display = window.innerWidth <= 650 ? 'flex' : 'none';
+  }
+  checkFloat();
+  window.addEventListener('resize', checkFloat);
+</script>
+</body>
+</html>
