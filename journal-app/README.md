@@ -59,6 +59,51 @@ Member tokens are generated when you add someone under `/leader/members`
 and don't expire — a member's link always takes them back to their own
 journal.
 
+## Deploying to Fly.io (free-tier friendly, with a persistent volume)
+
+Fly.io is the recommended host here because it gives the SQLite database an
+actual persistent disk on its free usage allowance — Render's free web
+service tier, by contrast, wipes the filesystem on every restart, which
+would silently erase the journal.
+
+From inside `journal-app/`, on your own machine (this needs your own Fly
+account — I can't authenticate as you from here):
+
+1. Install the CLI and sign up/log in:
+   ```
+   curl -L https://fly.io/install.sh | sh
+   fly auth signup   # or: fly auth login
+   ```
+2. Launch the app. Fly will detect the `Dockerfile` and offer to rewrite
+   `fly.toml` with your app name/region — let it, then say **no** when it
+   asks to deploy immediately (we need the volume first):
+   ```
+   fly launch --no-deploy
+   ```
+3. Create the persistent volume the database lives on (must match the
+   `[[mounts]]` `destination` in `fly.toml`, `/data`):
+   ```
+   fly volumes create journal_data --size 1 --region <same region as above>
+   ```
+4. Deploy:
+   ```
+   fly deploy
+   ```
+5. Once it's up, update `BASE_URL` in `fly.toml` to your real
+   `https://<your-app-name>.fly.dev` URL (this only affects the link text
+   inside the mocked email logs) and redeploy:
+   ```
+   fly deploy
+   ```
+6. Open it:
+   ```
+   fly open        # or just visit https://<your-app-name>.fly.dev/leader
+   ```
+
+The Dockerfile and `fly.toml` are already in this branch and were smoke-tested
+locally (production env vars, custom `DATABASE_PATH`, server boot) — `fly
+launch` should just work against them without edits beyond app name/region.
+
 ## Testing the send without waiting for an actual Monday
 
 Since email is mocked anyway, an approved entry can be force-sent
