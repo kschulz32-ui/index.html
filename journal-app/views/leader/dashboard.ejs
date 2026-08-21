@@ -1,0 +1,34 @@
+<%- include('../partials/head', { pageTitle: 'This week & past weeks' }) %>
+<%- include('../partials/leader_header', { active: 'weeks' }) %>
+
+<div class="actions" style="margin-top: 0;">
+  <a class="btn" href="/leader/entries/new">Start this week's entry</a>
+</div>
+
+<% if (entries.length === 0) { %>
+  <div class="empty-state">
+    <p><strong>Nothing's been planted yet.</strong></p>
+    <p>Start this week's entry to begin the journal — a sermon date, a title, five takeaways, and one prompt that invites a brave next step.</p>
+  </div>
+<% } else { %>
+  <ul class="week-list">
+    <% entries.forEach(function(e) { %>
+      <li>
+        <a class="week-link" href="/leader/entries/<%= e.id %>"><%= e.sermon_title %></a>
+        <span class="status-pill <%= e.status %>"><%= e.status %></span>
+        <div class="week-meta">
+          <%= e.sermon_date %>
+          <% if (e.status === 'approved') { %>
+            &middot; scheduled to send <%= e.scheduledDisplay %>
+          <% } else if (e.status === 'sent' && e.stats) { %>
+            &middot; <%= e.stats.respondedCount %> of <%= e.stats.activeCount %> have written an entry so far (<%= e.stats.pct %>%)
+          <% } else { %>
+            &middot; still being written
+          <% } %>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<%- include('../partials/foot') %>
