@@ -1,0 +1,55 @@
+<%- include('../partials/head', { pageTitle: 'This week' }) %>
+<%- include('../partials/member_header', { member: member, active: 'this_week' }) %>
+
+<% if (saved) { %>
+  <div class="notice">Saved. That's one small, brave step for this week.</div>
+<% } %>
+
+<% if (isFirstEverVisit) { %>
+  <p class="subhead">Welcome to your journal, <%= member.name.split(' ')[0] %>. This is a place to tend what Sunday stirred up — not another feed to scroll past.</p>
+<% } %>
+
+<div class="entry-page">
+  <div class="entry-head">
+    <span class="entry-date"><%= entry.sermon_date %></span>
+    <h2 class="entry-title"><%= entry.sermon_title %></h2>
+  </div>
+
+  <ul class="takeaways">
+    <% takeaways.filter(t => t.text).forEach(function(t) { %>
+      <li><%= t.text %></li>
+    <% }) %>
+  </ul>
+
+  <div class="prompt-box">
+    <span class="label">This week's entry prompt</span>
+    <%= entry.prompt_text %>
+  </div>
+
+  <form method="post" action="/journal/<%= member.token %>/entries/<%= entry.id %>">
+    <input type="hidden" name="return_to" value="this_week">
+
+    <div class="field-block">
+      <label for="personal_text">Personal
+        <span class="hint">Only write where this one actually landed — no pressure to fill all three.</span>
+      </label>
+      <textarea id="personal_text" name="personal_text"><%= response ? response.personal_text || '' : '' %></textarea>
+    </div>
+
+    <div class="field-block">
+      <label for="work_text">Work</label>
+      <textarea id="work_text" name="work_text"><%= response ? response.work_text || '' : '' %></textarea>
+    </div>
+
+    <div class="field-block">
+      <label for="family_text">Family</label>
+      <textarea id="family_text" name="family_text"><%= response ? response.family_text || '' : '' %></textarea>
+    </div>
+
+    <div class="actions">
+      <button type="submit">Save this entry</button>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/foot') %>

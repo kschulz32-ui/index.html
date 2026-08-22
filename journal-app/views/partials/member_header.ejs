@@ -1,0 +1,10 @@
+<header class="site">
+  <div class="brand">
+    <h1>The Journal</h1>
+    <span class="tagline">Cultivate &gt; Consume</span>
+  </div>
+  <nav class="leader-nav">
+    <a href="/journal/<%= member.token %>" class="<%= active === 'this_week' ? 'active' : '' %>">This week</a>
+    <a href="/journal/<%= member.token %>/history" class="<%= active === 'history' ? 'active' : '' %>">Your journal</a>
+  </nav>
+</header>

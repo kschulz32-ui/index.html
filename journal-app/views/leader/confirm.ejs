@@ -1,0 +1,49 @@
+<%- include('../partials/head', { pageTitle: 'Confirm this week\'s send' }) %>
+<%- include('../partials/leader_header', { active: 'weeks' }) %>
+
+<h2 class="page-title">Here's exactly what your group will receive</h2>
+<p class="subhead">Nothing sends until you confirm below.</p>
+
+<% if (errors && errors.length) { %>
+  <div class="errors">
+    <ul>
+      <% errors.forEach(function(err) { %><li><%= err %></li><% }) %>
+    </ul>
+  </div>
+  <a class="btn secondary" href="/leader/entries/<%= entry.id %>/edit">Go back and finish this entry</a>
+<% } else { %>
+
+  <div class="card">
+    <p><strong>Subject:</strong> <%= sampleEmail.subject %></p>
+    <div class="email-preview"><%= sampleEmail.body %></div>
+    <p class="helper-text">
+      <% if (sampleMemberIsPlaceholder) { %>
+        Shown with a placeholder name and link — each member's copy will be personalized with their own name and journal link.
+      <% } else { %>
+        Shown as it will look for <%= members[0].name %> — every other member gets the same message with their own name and journal link.
+      <% } %>
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">Going to <%= members.length %> member<%= members.length === 1 ? '' : 's' %></h3>
+    <% if (members.length === 0) { %>
+      <p class="helper-text">No active members yet — add members before this can send anyone anything.</p>
+    <% } else { %>
+      <ul class="week-list">
+        <% members.forEach(function(m) { %>
+          <li><%= m.name %> <span class="week-meta">&lt;<%= m.email %>&gt;</span></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+
+  <form method="post" action="/leader/entries/<%= entry.id %>/approve">
+    <div class="actions">
+      <button type="submit" <%= members.length === 0 ? 'disabled' : '' %>>Confirm &amp; schedule for Monday at noon</button>
+      <a class="btn quiet" href="/leader/entries/<%= entry.id %>">Not yet</a>
+    </div>
+  </form>
+<% } %>
+
+<%- include('../partials/foot') %>

@@ -1,0 +1,317 @@
+:root {
+  --paper: #faf6ee;
+  --paper-raised: #fffdf8;
+  --ink: #2e2a24;
+  --ink-soft: #6b6155;
+  --rule: #e3d9c4;
+  --accent: #8a5a3c;
+  --accent-dark: #6e4630;
+  --good: #4a7a5e;
+  --warn: #b6572f;
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+header.site {
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+header.site .brand {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+header.site h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+header.site .tagline {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+nav.leader-nav {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+nav.leader-nav a {
+  color: var(--ink-soft);
+  margin-right: 1.25rem;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-soft);
+}
+
+nav.leader-nav a.active,
+nav.leader-nav a:hover {
+  color: var(--accent-dark);
+  border-bottom-color: var(--accent-dark);
+}
+
+h1, h2, h3 { font-weight: 600; }
+h2 { font-size: 1.2rem; margin-top: 2rem; }
+
+.page-title {
+  font-size: 1.7rem;
+  margin: 0 0 0.25rem;
+}
+
+.subhead {
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 0;
+}
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.entry-page {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.entry-head {
+  margin-bottom: 0.75rem;
+}
+
+.entry-date {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.entry-title {
+  font-size: 1.3rem;
+  margin: 0.15rem 0 0;
+}
+
+ul.takeaways {
+  padding-left: 1.1rem;
+  margin: 0.5rem 0 1rem;
+}
+
+ul.takeaways li { margin-bottom: 0.4rem; }
+
+.prompt-box {
+  background: #f4ece0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  margin: 0.75rem 0 1.25rem;
+  font-style: italic;
+}
+
+.prompt-box .label {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-dark);
+  margin-bottom: 0.35rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 1rem 0 0.3rem;
+}
+
+label .hint {
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.85rem;
+  display: block;
+}
+
+input[type=text], input[type=date], input[type=email], textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+textarea { min-height: 5rem; resize: vertical; }
+
+.takeaway-input { margin-bottom: 0.6rem; }
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+button, .btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 5px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
+.btn.secondary {
+  background: transparent;
+  color: var(--accent-dark);
+}
+.btn.secondary:hover { background: #f1e7d8; }
+
+.btn.quiet {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--rule);
+}
+.btn.quiet:hover { background: #f1e7d8; color: var(--ink); }
+
+.status-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+}
+.status-pill.draft { border-color: var(--rule); }
+.status-pill.approved { border-color: var(--warn); color: var(--warn); }
+.status-pill.sent { border-color: var(--good); color: var(--good); }
+
+.week-list { list-style: none; padding: 0; margin: 0; }
+.week-list li {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.9rem 0;
+}
+.week-list li:last-child { border-bottom: none; }
+.week-list a.week-link {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+.week-list a.week-link:hover { color: var(--accent-dark); }
+.week-meta {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ink-soft);
+}
+.empty-state p { max-width: 32rem; margin: 0.5rem auto; }
+
+.errors {
+  background: #fbe9e2;
+  border: 1px solid var(--warn);
+  color: var(--warn);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+}
+.errors ul { margin: 0; padding-left: 1.1rem; }
+
+.notice {
+  background: #ecf3ee;
+  border: 1px solid var(--good);
+  color: var(--good);
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.email-preview {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.field-block { margin-bottom: 1.5rem; }
+.field-block .filled-note {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.member-list { list-style: none; padding: 0; margin: 0; }
+.member-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.6rem 0;
+}
+.member-list li:last-child { border-bottom: none; }
+.member-list .inactive { color: var(--ink-soft); text-decoration: line-through; }
+
+.completion {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.response-block {
+  border-top: 1px dashed var(--rule);
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+}
+.response-block h4 { margin: 0 0 0.3rem; font-size: 0.95rem; }
+
+form.inline { display: flex; gap: 0.5rem; align-items: flex-end; }
+form.inline .grow { flex: 1; }
+
+.helper-text {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  font-style: italic;
+}

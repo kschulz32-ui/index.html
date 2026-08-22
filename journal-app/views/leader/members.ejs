@@ -1,0 +1,46 @@
+<%- include('../partials/head', { pageTitle: 'Members' }) %>
+<%- include('../partials/leader_header', { active: 'members' }) %>
+
+<h2 class="page-title">Members</h2>
+<p class="subhead">Add group members by hand — each gets their own private journal link once you add them.</p>
+
+<% if (errors && errors.length) { %>
+  <div class="errors">
+    <ul>
+      <% errors.forEach(function(err) { %><li><%= err %></li><% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<div class="card">
+  <form method="post" action="/leader/members" class="inline">
+    <div class="grow">
+      <label for="name" style="margin-top:0;">Name</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="grow">
+      <label for="email" style="margin-top:0;">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <button type="submit">Add member</button>
+  </form>
+</div>
+
+<% if (members.length === 0) { %>
+  <div class="empty-state">
+    <p>No one's been added yet. Add your first group member above.</p>
+  </div>
+<% } else { %>
+  <ul class="member-list">
+    <% members.forEach(function(m) { %>
+      <li>
+        <span class="<%= m.active ? '' : 'inactive' %>"><%= m.name %> <span class="week-meta">&lt;<%= m.email %>&gt;</span></span>
+        <form method="post" action="/leader/members/<%= m.id %>/toggle-active">
+          <button type="submit" class="quiet"><%= m.active ? 'Mark inactive' : 'Mark active' %></button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<%- include('../partials/foot') %>

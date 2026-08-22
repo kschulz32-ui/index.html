@@ -1,0 +1,64 @@
+<%- include('../partials/head', { pageTitle: entry.sermon_title }) %>
+<%- include('../partials/leader_header', { active: 'weeks' }) %>
+
+<div class="entry-head">
+  <span class="entry-date"><%= entry.sermon_date %></span>
+  <h2 class="entry-title"><%= entry.sermon_title %></h2>
+  <span class="status-pill <%= entry.status %>"><%= entry.status %></span>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Takeaways</h3>
+  <ul class="takeaways">
+    <% takeaways.filter(t => t.text).forEach(function(t) { %>
+      <li><%= t.text %></li>
+    <% }) %>
+  </ul>
+
+  <div class="prompt-box">
+    <span class="label">This week's entry prompt</span>
+    <%= entry.prompt_text %>
+  </div>
+</div>
+
+<% if (entry.status === 'draft') { %>
+  <div class="actions">
+    <a class="btn" href="/leader/entries/<%= entry.id %>/confirm">Review &amp; confirm send</a>
+    <a class="btn secondary" href="/leader/entries/<%= entry.id %>/edit">Edit entry</a>
+  </div>
+<% } else if (entry.status === 'approved') { %>
+  <div class="notice">
+    Confirmed. This entry will send Monday at noon — <%= scheduledDisplay %>.
+  </div>
+  <div class="actions">
+    <form method="post" action="/leader/entries/<%= entry.id %>/unapprove">
+      <button type="submit" class="quiet">Not yet — back to draft</button>
+    </form>
+    <form method="post" action="/leader/entries/<%= entry.id %>/send-now-dev">
+      <button type="submit" class="secondary">Send now (testing only)</button>
+    </form>
+  </div>
+<% } else if (entry.status === 'sent') { %>
+  <div class="notice">
+    Sent to <%= stats.activeCount %> member<%= stats.activeCount === 1 ? '' : 's' %> on <%= entry.sent_at %>.
+  </div>
+  <h3>How the group is doing</h3>
+  <p class="completion"><%= stats.respondedCount %> of <%= stats.activeCount %> have written an entry so far (<%= stats.pct %>%).</p>
+
+  <h3>This week's entries</h3>
+  <% if (responses.length === 0) { %>
+    <p class="helper-text">No one has written into this week yet — that's alright, give it time.</p>
+  <% } else { %>
+    <% responses.forEach(function(r) { %>
+      <div class="response-block">
+        <h4><%= r.member_name %></h4>
+        <% if (r.personal_text) { %><p><strong>Personal:</strong> <%= r.personal_text %></p><% } %>
+        <% if (r.work_text) { %><p><strong>Work:</strong> <%= r.work_text %></p><% } %>
+        <% if (r.family_text) { %><p><strong>Family:</strong> <%= r.family_text %></p><% } %>
+        <% if (!r.personal_text && !r.work_text && !r.family_text) { %><p class="helper-text">No entry text yet.</p><% } %>
+      </div>
+    <% }) %>
+  <% } %>
+<% } %>
+
+<%- include('../partials/foot') %>

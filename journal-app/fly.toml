@@ -1,0 +1,35 @@
+# Fly.io app config for The Journal (Message Action Journal).
+#
+# `fly launch` will ask to overwrite this file and fill in a real `app`
+# name — that's fine, let it. The important parts to keep are the [[mounts]]
+# volume (so the SQLite database survives restarts/deploys) and the
+# DATABASE_PATH env var pointing at that mounted volume.
+
+app = "message-action-journal"
+primary_region = "iad"
+
+[build]
+
+[env]
+  PORT = "3000"
+  DATABASE_PATH = "/data/journal.db"
+  GROUP_TIMEZONE = "America/Chicago"
+  # Update this to your actual Fly app URL after the first deploy —
+  # it's only used to build the journal links inside the (currently
+  # mocked) email text.
+  BASE_URL = "https://message-action-journal.fly.dev"
+
+[[mounts]]
+  source = "journal_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

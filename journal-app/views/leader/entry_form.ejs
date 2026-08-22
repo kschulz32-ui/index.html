@@ -1,0 +1,48 @@
+<%- include('../partials/head', { pageTitle: entry && entry.id ? 'Edit this week\'s entry' : 'Start this week\'s entry' }) %>
+<%- include('../partials/leader_header', { active: 'weeks' }) %>
+
+<h2 class="page-title"><%= entry && entry.id ? 'Edit this week\'s entry' : 'Start this week\'s entry' %></h2>
+<p class="subhead">The date and title head the entry — the way a real journal entry starts.</p>
+
+<% if (errors && errors.length) { %>
+  <div class="errors">
+    <ul>
+      <% errors.forEach(function(err) { %><li><%= err %></li><% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<form method="post" action="<%= entry && entry.id ? ('/leader/entries/' + entry.id) : '/leader/entries/new' %>">
+  <div class="card">
+    <label for="sermon_date">Sermon date</label>
+    <input type="date" id="sermon_date" name="sermon_date" value="<%= entry ? entry.sermon_date || '' : '' %>" required>
+
+    <label for="sermon_title">Sermon title / theme</label>
+    <input type="text" id="sermon_title" name="sermon_title" value="<%= entry ? entry.sermon_title || '' : '' %>" placeholder="e.g. Loving Your Neighbor" required>
+  </div>
+
+  <div class="card">
+    <label>Five takeaways
+      <span class="hint">Short — a sentence or two each.</span>
+    </label>
+    <% for (let i = 0; i < 5; i++) { %>
+      <div class="takeaway-input">
+        <input type="text" name="takeaway_<%= i + 1 %>" value="<%= takeaways[i] || '' %>" placeholder="Takeaway <%= i + 1 %>">
+      </div>
+    <% } %>
+  </div>
+
+  <div class="card">
+    <label for="prompt_text">This week's entry prompt
+      <span class="hint">Invite one specific, courageous action — not a vague reflection question.</span>
+    </label>
+    <textarea id="prompt_text" name="prompt_text" placeholder="e.g. Have the honest conversation you've been avoiding — today, not &quot;someday.&quot;"><%= entry ? entry.prompt_text || '' : '' %></textarea>
+  </div>
+
+  <div class="actions">
+    <button type="submit">Save entry</button>
+    <a class="btn quiet" href="<%= entry && entry.id ? ('/leader/entries/' + entry.id) : '/leader' %>">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/foot') %>
