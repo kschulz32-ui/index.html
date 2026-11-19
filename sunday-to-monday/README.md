@@ -9,8 +9,8 @@ Knowledge + Action = Transformation. The app is meant to be finite and calm. No 
 | Milestone | What | State |
 | --- | --- | --- |
 | 1 | Setup, magic link auth, schema, seed | done |
-| 2 | Leader flow: transcript, Claude takeaways, edit, publish | next |
-| 3 | Member flow: recap, commit, plan, today, harvest, log | |
+| 2 | Leader flow: transcript, Claude takeaways, edit, publish | done |
+| 3 | Member flow: recap, commit, plan, today, harvest, log | next |
 | 4 | Push + email fallback, recap cron (every 15 min) | |
 | 5 | Leader counts view | |
 | 6 | PWA install, offline shell, polish, privacy tests | |
@@ -60,6 +60,22 @@ Any other email can sign in too. New people land on a "Find your church" screen 
 | `npm run db:seed` | add seed data |
 | `npm test` | migrate the test DB, then run tests (they wipe `TEST_DATABASE_URL`) |
 | `npm run typecheck` / `npm run lint` | checks |
+
+## Leader flow
+
+1. **Leader > New message**: paste the transcript or notes, set the date, speaker and an optional video link. The link is stored as text only, nothing is downloaded.
+2. **Draft takeaways with Claude** sends the transcript to Claude from the server (`src/server/ai.ts`) and asks for structured JSON: title, scripture, 3 to 5 `{know, act}` pairs and a transformation line. **Write them myself** skips Claude.
+3. The editor shows every field, with a live word count for each Know line. Save as many drafts as you like.
+4. **Publish to members** runs the strict checks (3 to 5 takeaways, Know at most 16 words, every Act and the Become line filled). Only then does `status` flip to `published`. Members' queries only ever read published rows.
+5. Once live, wording can be fixed but takeaways can't be added or removed, because members' commitments point at a takeaway by position. Drafts can be deleted, but published messages can't.
+
+### Claude
+
+- Model `claude-opus-5-5`, structured outputs (Zod schema), effort `medium`, server-side refusal fallback (`fallbacks: "default"`).
+- The transcript is cleaned (control characters removed, anything that looks like a `<transcript>` or `<system>` tag defused) and wrapped in `<transcript>` tags. The system prompt says that text is data, not instructions. The output is validated and clamped again on our side.
+- Rate limits: 12 drafts per leader per hour, 60 per church per day.
+- Transcripts over 100k characters are rejected with a message instead of being cut silently. Only the first 6,000 characters are stored.
+- **No key?** Leave `ANTHROPIC_API_KEY` empty. The leader screens say Claude isn't set up and go straight to writing takeaways by hand. If a call fails (bad key, outage, refusal), the draft is still created and the leader is told to write the takeaways.
 
 ## Layout
 
