@@ -9,6 +9,7 @@ import {
   normalizeAiDraft,
   type AiDraft,
 } from "@/lib/takeaways";
+import { PLAN_SYSTEM_PROMPT, aiPlanSchema, buildPlanUserMessage, normalizePlan, type Mode } from "@/lib/plan";
 import { rateLimit } from "./rate-limit";
 
 export const MODEL = "claude-opus-5-5";
@@ -29,7 +30,14 @@ export type AiResult<T> =
   | { ok: true; data: T }
   | { ok: false; reason: "no_key" | "rate_limited" | "failed" | "refused" };
 
-/** Per-user and per-church limits on Claude calls. */
+/** Limits on members' plan requests: per person and per church. */
+export async function planRateLimit(userId: string, churchId: string): Promise<boolean> {
+  const userOk = await rateLimit(db, `ai:plan:user:${userId}`, 6, 3600);
+  const churchOk = await rateLimit(db, `ai:plan:church:${churchId}`, 500, 86_400);
+  return userOk && churchOk;
+}
+
+/** Per-user and per-church limits on leaders' takeaway drafts. */
 export async function aiRateLimit(userId: string, churchId: string): Promise<boolean> {
   const userOk = await rateLimit(db, `ai:user:${userId}`, 12, 3600);
   const churchOk = await rateLimit(db, `ai:church:${churchId}`, 60, 86_400);
@@ -62,6 +70,29 @@ export async function draftTakeaways(transcript: string): Promise<AiResult<AiDra
     } else {
       console.error("Claude call failed", error instanceof Error ? error.message : error);
     }
+    return { ok: false, reason: "failed" };
+  }
+}
+
+/** Ask Claude for exactly five daily actions. Callers fall back to templates on any failure. */
+export async function draftPlan(input: { know: string; act: string; iWill: string; mode: Mode }): Promise<AiResult<string[]>> {
+  if (!aiAvailable()) return { ok: false, reason: "no_key" };
+  try {
+    const response = await getClient().beta.messages.parse({
+      model: MODEL,
+      max_tokens: 16000,
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      output_config: { effort: "low", format: betaZodOutputFormat(aiPlanSchema) },
+      system: PLAN_SYSTEM_PROMPT,
+      messages: [{ role: "user", content: buildPlanUserMessage(input) }],
+    });
+    if (response.stop_reason === "refusal") return { ok: false, reason: "refused" };
+    const plan = normalizePlan(response.parsed_output);
+    return plan ? { ok: true, data: plan } : { ok: false, reason: "failed" };
+  } catch (error) {
+    if (error instanceof Anthropic.RateLimitError) return { ok: false, reason: "rate_limited" };
+    console.error("Claude plan call failed", error instanceof Anthropic.APIError ? error.status : error instanceof Error ? error.message : error);
     return { ok: false, reason: "failed" };
   }
 }

@@ -10,8 +10,8 @@ Knowledge + Action = Transformation. The app is meant to be finite and calm. No 
 | --- | --- | --- |
 | 1 | Setup, magic link auth, schema, seed | done |
 | 2 | Leader flow: transcript, Claude takeaways, edit, publish | done |
-| 3 | Member flow: recap, commit, plan, today, harvest, log | next |
-| 4 | Push + email fallback, recap cron (every 15 min) | |
+| 3 | Member flow: recap, commit, plan, today, harvest, log | done |
+| 4 | Push + email fallback, recap cron (every 15 min) | next |
 | 5 | Leader counts view | |
 | 6 | PWA install, offline shell, polish, privacy tests | |
 
@@ -76,6 +76,17 @@ Any other email can sign in too. New people land on a "Find your church" screen 
 - Rate limits: 12 drafts per leader per hour, 60 per church per day.
 - Transcripts over 100k characters are rejected with a message instead of being cut silently. Only the first 6,000 characters are stored.
 - **No key?** Leave `ANTHROPIC_API_KEY` empty. The leader screens say Claude isn't set up and go straight to writing takeaways by hand. If a call fails (bad key, outage, refusal), the draft is still created and the leader is told to write the takeaways.
+
+## Member flow
+
+1. **Recap** shows the latest published message: each takeaway's Know line with its Act line under it, then the Become sentence. Opening it counts as "opened".
+2. Tapping a takeaway opens **This week I will...**, prefilled with the suggested action. Nothing else is shown until the member confirms their own words.
+3. They pick **Do it, Pray it, Say it or Share it**. The server asks Claude for exactly 5 daily actions (`src/server/ai.ts`, effort `low`). If there's no key, the call fails or the member hits the rate limit (6 an hour), the built-in plan for that mode is used and the Today screen says so.
+4. **Today** shows the commitment, a five-day strip and the selected day's action. Future days are locked, both in the UI and on the server. Past days can still be marked done, with an optional one-line note. Any action can be reworded. If an earlier day was missed: "Nothing is lost. Today is the next one."
+5. From day 5 on, **What grew in you this week?** appears. After day 5 the week says it's finished, and the next message starts a new loop.
+6. **Log** is private: what they heard, what they said they'd do, what they did, and what changed, for every week, plus **Copy my log** and the **Count me in church totals** switch (off by default).
+
+"Today" is always the church's local date (`church.timezone`). Events (`opened`, `chose`, `acted`, `finished`) are counts only, recorded once per person per message. "Finished" means the look-back was written.
 
 ## Layout
 
